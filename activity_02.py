@@ -6,4 +6,5 @@ import numpy as np
 from astropy.table import QTable
 
 table = QTable.read('data.csv', format='ascii.csv')
+# todo: write all the code, correct the data files, learn how to use a computer, etc. etc.
 
