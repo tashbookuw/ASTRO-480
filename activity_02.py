@@ -36,6 +36,24 @@ cons = [AirmassConstraint(37), AtNightConstraint.twilight_civil()]
 # That airmass is hardly a constraint since it will accept anything up until the horizon but we can easily change it
 
 obs_tab = observability_table(cons, kitt, targs, time_range=time_range)
-print(obs_tab)
+# print(obs_tab)
+
+obs_targs = []
+
+for i in range(0, len(obs_tab)-1):
+	if obs_tab[i]['ever observable']:
+		obs_targs.append([obs_tab[i]['target name'],obs_tab[i]['fraction of time observable']])
+
+obs_targs.sort(key=lambda obs: obs[1])
+# tell it to sort by the second element in the observable targets array, which is the fraction of time observable
+
+def most_obs(n):
+	output = "The " + str(n) + " most (or equally) observable Radio Loud Galaxies in the 2nd half of April: \n"
+	for i in range(0, n):
+		output += str(i+1) + ". " + obs_targs[len(obs_targs)-(1+i)][0] + " is observable for " + str(obs_targs[len(obs_targs)-(1+i)][1]) + " of the second half of April. \n"
+	return output
+
+print(most_obs(20))
+# We can change it to whatever, obviously
 
 print("finished")
