@@ -24,7 +24,7 @@ obs = []
 kitt = Observer.at_site('Kitt Peak')
 
 for i in range(0, l-1):
-	targs.append(FixedTarget(coord=SkyCoord(ra=(t[i]['ra']), dec=(t[i]['dec']), unit=(u.hourangle, u.deg)), name=t[i]['alt_name']))
+	targs.append(FixedTarget(coord=SkyCoord(ra=(t[i]['ra']), dec=(t[i]['dec']), unit=(u.hourangle, u.deg)), name=t[i]['alt_name'] + " [" + t[i]['iau_name'] + ", " + t[i]['ra'] + ", " + t[i]['des'] + "]"))
 	# Accounting for the fact that ra is in [hour min sec] and dec is in [deg arcmin arcsec]
 	
 	# print((targs[len(targs)-1].name)) # This was just to check where errors occurred
@@ -53,7 +53,8 @@ def most_obs(n):
 		output += str(i+1) + ". " + obs_targs[len(obs_targs)-(1+i)][0] + " is observable for " + str(obs_targs[len(obs_targs)-(1+i)][1]) + " of the second half of April. \n"
 	return output
 
-print(most_obs(20))
+
+print(most_obs(10))
 # We can change it to whatever, obviously
 
 print("finished")
