@@ -24,7 +24,7 @@ obs = []
 kitt = Observer.at_site('Kitt Peak')
 
 for i in range(0, l-1):
-	targs.append(FixedTarget(coord=SkyCoord(ra=(t[i]['ra']), dec=(t[i]['dec']), unit=(u.hourangle, u.deg)), name=t[i]['alt_name'] + " [" + t[i]['iau_name'] + ", " + t[i]['ra'] + ", " + t[i]['des'] + "]"))
+	targs.append(FixedTarget(coord=SkyCoord(ra=(t[i]['ra']), dec=(t[i]['dec']), unit=(u.hourangle, u.deg)), name=t[i]['alt_name'] + " [" + t[i]['iau_name'] + ", " + t[i]['ra'] + ", " + t[i]['dec'] + "]"))
 	# Accounting for the fact that ra is in [hour min sec] and dec is in [deg arcmin arcsec]
 	
 	# print((targs[len(targs)-1].name)) # This was just to check where errors occurred
