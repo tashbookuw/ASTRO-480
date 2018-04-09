@@ -49,7 +49,11 @@ for i in range(0, len(obs_tab)):
 		obs_targs.append([obs_tab[i]['target name'],obs_tab[i]['fraction of time observable']])
 		total_save.append(obs_tab[i])
 
+# if you're sorting it anyway below, there's no reason for the loop above
+
 obs_targs.sort(key=lambda obs: obs[1])
+
+# obs_tab.sor(['fraction of time observable']) should do the same thing
 total_save.sort(key=lambda obs: obs['fraction of time observable'])
 # tell it to sort by the second element in the observable targets array, which is the fraction of time observable
 # print(total_save)
@@ -70,7 +74,7 @@ print(most_obs(10)[0])
 print("\n ------------------ \n")
 print(most_obs(10)[1])
 
- # We can change it to whatever, obviously
+# We can change it to whatever, obviously
 
 moon_ang1 = moon_illumination(Time(['2018-04-15']))
 moon_ang2 =  moon_illumination(Time(['2018-04-30']))
