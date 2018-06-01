@@ -14,14 +14,16 @@ dataset = load_files(languages_data_folder)
 docs_train, docs_test, y_train, y_test = train_test_split(dataset.data, dataset.target, test_size=0.5)
 
 vectorizer = TfidfVectorizer(ngram_range=(1, 3), analyzer='char', use_idf=False)
+# this is the thing that gets rid of small, common words because they're not super duper useful
 
-clf = Pipeline([ ('vec', vectorizer), ('clf', Perceptron(tol=1e-3)), ])
+clf = Pipeline([ ('vec', vectorizer), ('clf', Perceptron(tol=1e-3)), ]) #This is equivalent to one millitolerance
 
 clf.fit(docs_train, y_train)
 
 y_predicted = clf.predict(docs_test)
 
 print(metrics.classification_report(y_test, y_predicted, target_names=dataset.target_names))
+#this is the confusing confusion matrix
 
 centimeter = metrics.confusion_matrix(y_test, y_predicted)
 
@@ -39,8 +41,8 @@ sentences = [
 	u'will dr. tuttle actually check to see if I wrote this code?'
 	u'can I trick this machine learning algorithm #espana',
 	u'what about non alphanumeric characters?',
-	u'!@# $%^ &*( ][',
-	u'Jesus', #will it read as spanish?
+	u'!@# $%^ &*( ][', # if you do paragraphs, this reads as japanese but if you use short_paragraphs, it reads as arabic
+	u'Jesus', #will it read as spanish? #jesus is french with paragraphs and polish with short_paragraphs
 ]
 
 predicted = clf.predict(sentences)
